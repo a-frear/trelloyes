@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 import List from './List.js'
 import './App.css';
+import STORE from './STORE.js';
+
 
 class App extends Component {
   //if no props are given, there would be empty lists array and allCarcs objects. 
-  static defaultProps = {
-    store: {
-      lists: [],
-      allCards: {},
-    }
+  state = {
+    store: STORE,
   };
 
+  handleDeleteCard(cardId){
+    console.log('delete card called', { cardId })
+  }
+  addRandomCard(listId){
+    console.log('add random card called', { listId })
+  }
+
   render() {
-    //take the props of App from index.js
-    const { store } = this.props
+ 
     return (
       <main className='App'>
         <header className='App-header'>
           <h1>Trelloyes!</h1>
         </header>
         <div className='App-list'>
-          {store.lists.map(list => (
+          {this.state.store.lists.map(list => (
             <List
               key={list.id}
+              id={list.id}
               header={list.header}
-              cards={list.cardIds.map(id => store.allCards[id])}
+              cards={list.cardIds.map(id => this.state.store.allCards[id])}
+              onDeleteCard={this.handleDeleteCard}
+              onAddRandomCard={this.addRandomCard}
             />
           ))}
         </div>
