@@ -29,6 +29,10 @@ function List(props){
     )
 };
 
+List.defaultProps = {
+  onClickAdd: () => {},
+}
+
 export default List;
 
 /* The List component should render markup matching the design.html: a section with a class of 'List', containing a header and div with class 'List-cards'.

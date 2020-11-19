@@ -8,6 +8,10 @@ function Card(props) {
         <p>{props.content}</p>
     </div>
   }
+
+  Card.propTypes = {
+    onClickDelete: () => {}
+  }
   
   export default Card;
 
